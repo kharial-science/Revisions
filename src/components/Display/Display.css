@@ -1,0 +1,49 @@
+.Display {
+  margin: auto;
+  margin-top: 50vh;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 80%;
+  height: 30vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Display > div {
+  height: 30vh;
+  width: 45%;
+  position: relative;
+  border-radius: 5vh;
+}
+
+.Display > div::after {
+  content: '';
+  display: block;
+  height: 28vh;
+  position: absolute;
+  top: 1vh;
+  left: 1vh;
+  right: 1vh;
+  border-radius: 4vh;
+  border: 1px grey dashed;
+}
+
+.Display .definition {
+  background-color: white;
+}
+
+.Display .word {
+  background-color: white;
+}
+/*# sourceMappingURL=Display.css.map */

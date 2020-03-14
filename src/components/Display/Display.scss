@@ -1,0 +1,40 @@
+.Display {
+    margin: auto;
+    margin-top: 50vh;
+    transform: translateY(-50%);
+    width: 80%;
+    height: 30vh;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    & > div {
+        height: 30vh;
+        width: 45%;
+        position: relative;
+
+        border-radius: 5vh;
+
+        &::after {
+            content: '';
+            display: block;
+            height: 28vh;
+            position: absolute;
+            top: 1vh;
+            left: 1vh;
+            right: 1vh;
+            border-radius: 4vh;
+            border: 1px grey dashed;
+        }
+    }
+
+    .definition {
+        background-color: white;
+    }
+
+    .word {
+        background-color: white;
+    }
+}
