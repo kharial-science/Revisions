@@ -1,14 +1,29 @@
 .Display {
     margin: auto;
-    margin-top: 50vh;
-    transform: translateY(-50%);
     width: 80%;
     height: 30vh;
+    position: absolute;
+    left: 10%;
 
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
+    &#current {
+        top: calc(50% - 15vh);
+        animation: newCurrent .3s ease-in-out 1 forwards;   
+    }
+
+    &#last {
+        top: 0;
+        animation: fromCurrentToLast .3s ease-in-out 1 forwards;
+    }
+
+    &#last-disappeared {
+        top: 0;
+        animation: disappear .3s ease-in-out 1 forwards;
+    }
 
     & > div {
         height: 30vh;
@@ -16,6 +31,23 @@
         position: relative;
 
         border-radius: 5vh;
+        box-shadow: 0 4px 12px 0px rgba(0,0,0,.25);
+        background-color: white;
+        cursor: pointer;
+        transition: all .2s;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            box-shadow: 0 0 6px 0px rgba(0,0,0,.25);
+
+            p {
+                font-size: 5vh;
+            }
+        }
 
         &::after {
             content: '';
@@ -28,13 +60,50 @@
             border-radius: 4vh;
             border: 1px grey dashed;
         }
+
+        p {
+            max-width: 100%;
+
+            font-size: 4vh;
+            font-weight: 500;
+
+            z-index: 2;
+            transition: all .2s;
+
+            &::selection {
+                background-color: #ffcef8;
+            }
+        }
+    }
+}
+
+@keyframes fromCurrentToLast {
+    from { top: calc(50% - 15vh); }
+    to { top: 0; }
+}
+
+@keyframes newCurrent {
+    from {
+        opacity: 0;
+        filter: blur(3vh);
+        transform: translateY(20%);
     }
 
-    .definition {
-        background-color: white;
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
+@keyframes disappear {
+    from {
+        opacity: 1;
+        transform: translateY(0);
     }
 
-    .word {
-        background-color: white;
+    to {
+        opacity: 0;
+        transform: translateY(-20%);
     }
 }

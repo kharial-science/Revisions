@@ -1,0 +1,118 @@
+#Footer {
+    height: 25vh;
+    margin-top: 75vh;
+    overflow: hidden;
+    position: relative;
+
+    background-color: #2E2E2E;
+    box-shadow: 0 -4px 12px 0px rgba(0,0,0,.25);
+
+    .last-words-shape-container {
+        height: 10vh;
+        width: 40vh;
+        margin: auto;
+        margin-top: 7.5vh;
+
+        transition: all .15s;
+
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: flex-start;
+
+        .last-word-shape {
+            min-width: 5vh;
+            height: 10vh;
+            margin: 0 1.5vh;
+
+            .shape {
+                height: 10vh;
+                width: 5vh;
+
+                background-color: white;
+                border-radius: 2.5vh;
+                box-shadow: 0 4px 12px 0px rgba(0,0,0,.25);
+                cursor: pointer;
+                z-index: 2;
+
+                transition: all .35s;
+                
+                &:hover {
+                    box-shadow: 0 12px 12px 0px rgba(0,0,0,.25);
+                    transition: all .15s;
+                    transform: translateY(-2vh);
+                }
+
+                &:active {
+                    transform: translateY(1vh);
+                }
+            }
+
+            &.first {
+                animation: firstShapeComes .25s linear forwards;
+            }
+
+            &.middle {
+                animation: moveToLeft .25s linear forwards;
+            }
+
+            &.last {
+                animation: moveToLeft .25s linear forwards;
+            }
+        }
+
+        .disappeared-word-shape {
+            min-width: 5vh;
+            height: 10vh;
+            margin: 0 1.5vh;
+
+            background-color: white;
+            border-radius: 2.5vh;
+            box-shadow: 0 -4px 12px 0px rgba(0,0,0,.25);
+            animation: disappear-shape .25s linear forwards;
+        }
+    }
+
+    #Background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateY(-75vh);
+    }
+}
+
+@keyframes firstShapeComes {
+    from {
+        transform: translateX(1vh);
+        filter: blur(1vh);
+    }
+
+    to {
+        transform: translateX(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes moveToLeft {
+    from {
+        transform: translateX(7vh);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes disappear-shape {
+    from {
+        transform: translateX(7vh);
+        filter: blur(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(6vh);
+        filter: blur(1vh);
+        opacity: 0;
+    }
+}

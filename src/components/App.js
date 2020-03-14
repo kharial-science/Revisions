@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
 
+import Header from './Header/Header'
 import Display from './Display/Display'
+import Footer from './Footer/Footer'
+import Background from './Background/Background'
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +13,8 @@ class App extends Component {
     this.state = {
       rows: undefined,
       currentWord: undefined,
-      lastWords: []
+      lastWords: [],
+      isFull: false
     }
 
     this.initiateSpreadsheetRequest = this.initiateSpreadsheetRequest.bind(this)
@@ -20,6 +24,7 @@ class App extends Component {
     this.enableKeyListener = this.enableKeyListener.bind(this)
 
     this.pickRandomWordFromRows = this.pickRandomWordFromRows.bind(this)
+    this.handleSpacebarPress = this.handleSpacebarPress.bind(this)
   }
 
   componentDidMount() {
@@ -46,7 +51,7 @@ class App extends Component {
   enableKeyListener() {
     document.onkeypress = (e) => {
       if (e.charCode === 32) {
-        console.log('space')
+        this.handleSpacebarPress()
       }
     }
   }
@@ -56,10 +61,32 @@ class App extends Component {
     this.setState({ currentWord: randomWord })
   }
 
+  handleSpacebarPress() {
+    let lastWords = this.state.lastWords.slice()
+    lastWords.unshift(this.state.currentWord)
+    if (!this.state.isFull && lastWords.length === 6) this.setState({ isFull: true })
+    lastWords = lastWords.slice(0, 5)
+    this.setState({ lastWords })
+
+    this.pickRandomWordFromRows()
+  }
+
   render() {
+    const lastDisappeared = this.state.lastWords[1]
+    const lastWord = this.state.lastWords[0]
+    const currentWord = this.state.currentWord
+
     return (
       <div id="App">
-        {this.state.currentWord && <Display definition={this.state.currentWord.definition} word={this.state.currentWord.word} />}
+        <Header />
+
+        {lastDisappeared && <Display key={lastDisappeared.word + 'disap'} definition={lastDisappeared.definition} word={lastDisappeared.word} state='last-disappeared' />}
+        {lastWord && <Display key={lastWord.word + 'last'} definition={lastWord.definition} word={lastWord.word} state='last' />}
+        {currentWord && <Display key={currentWord.word} definition={currentWord.definition} word={'?'} state='current' />}
+        
+        <Footer lastWords={this.state.lastWords} isFull={this.state.isFull} />
+        
+        <Background />
       </div>
     )
   }

@@ -1,0 +1,126 @@
+#Header {
+  width: 100%;
+  height: 7.5vh;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  z-index: 2;
+  background-color: #2E2E2E;
+  -webkit-box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.25);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#Header #header-title-container, #Header a, #Header #social-networks {
+  z-index: 3;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#Header #ourDiscord {
+  top: 3.75vh;
+  left: 50%;
+  height: 60px;
+}
+
+#Header #ourLogo {
+  z-index: 3;
+  position: absolute;
+  top: 1.125vh;
+  left: calc(50% - 2.5vh);
+  height: 5vh;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  -webkit-animation: rotate 20s 0s infinite forwards linear;
+          animation: rotate 20s 0s infinite forwards linear;
+}
+
+#Header #header-title-container {
+  margin-right: 5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-left: 5vw;
+  padding: 0 15px;
+  height: 50px;
+  background-color: white;
+  border-radius: .6vh;
+}
+
+#Header #social-networks {
+  margin-right: 5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#Header #social-networks .social-network {
+  margin: 0 1vw;
+  width: 60px;
+  height: 60px;
+  border-radius: .6vh;
+}
+
+#Header #social-networks .social-network img {
+  background-color: white;
+  border-radius: .5vh;
+  height: 50px;
+}
+
+#Header #Background {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+/*# sourceMappingURL=Header.css.map */

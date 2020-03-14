@@ -1,18 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Display.css'
 
-const Display = ({ definition, word, style }) => {
+const Display = ({ definition, word, state }) => {
     return (
-        <div className="Display">
+        <div id={state} className='Display'>
             <div className="definition">
-                <h2>
-                    {definition}
-                </h2>
+                <p> { definition } </p>
             </div>
             <div className="word">
-                <h2>
-                    {word}
-                </h2>
+                <p> { word } </p>
             </div>
         </div>
     )
