@@ -8,6 +8,7 @@ const Footer = ({ lastWords, isFull }) => {
 
     if (lastWords) {
         lastWords.forEach((word, index) => {
+            if (!word) return
             const state = index === 0 ? 'first' : index === lastWords.length - 1 ? 'last' : 'middle'
 
             lastWordsInShapes.push(

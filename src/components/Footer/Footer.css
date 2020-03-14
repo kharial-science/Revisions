@@ -44,7 +44,7 @@
   -webkit-box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
-  z-index: 2;
+  z-index: 5;
   -webkit-transition: all .35s;
   transition: all .35s;
 }
@@ -88,6 +88,7 @@
           box-shadow: 0 -4px 12px 0px rgba(0, 0, 0, 0.25);
   -webkit-animation: disappear-shape .25s linear forwards;
           animation: disappear-shape .25s linear forwards;
+  pointer-events: none;
 }
 
 #Footer #Background {
