@@ -126,11 +126,14 @@
   height: 10vh;
   margin: 0 1.5vh;
   z-index: 5;
+  cursor: pointer;
+  border-radius: 2.5vh;
 }
 
 #Footer .last-words-shape-container .last-word-shape .shape {
   height: 10vh;
   width: 5vh;
+  position: relative;
   background-color: white;
   border-radius: 2.5vh;
   -webkit-box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.25);
@@ -153,6 +156,23 @@
 #Footer .last-words-shape-container .last-word-shape .shape:active {
   -webkit-transform: translateY(1vh);
           transform: translateY(1vh);
+}
+
+#Footer .last-words-shape-container .last-word-shape .shape h4 {
+  margin: 0;
+  height: 2vh;
+  width: 5vh;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 2vh;
+  -webkit-transform: rotateZ(90deg) translateX(-25%) translateY(110%);
+          transform: rotateZ(90deg) translateX(-25%) translateY(110%);
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 #Footer .last-words-shape-container .last-word-shape.first {

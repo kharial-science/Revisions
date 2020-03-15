@@ -13,7 +13,9 @@ const Footer = ({ lastWords, isFull, handleMethodSwitch, currentWordPickerMethod
 
             lastWordsInShapes.push(
                 <div key={word.word + state + index} className={`last-word-shape ${state}`}>
-                    <div className="shape"></div>
+                    <div className="shape">
+                        <h4>{word.number}</h4>
+                    </div>
                 </div>
             )
         })

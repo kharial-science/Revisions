@@ -104,11 +104,15 @@
             min-width: 5vh;
             height: 10vh;
             margin: 0 1.5vh;
+
             z-index: 5;
+            cursor: pointer;
+            border-radius: 2.5vh;
 
             .shape {
                 height: 10vh;
                 width: 5vh;
+                position: relative;
 
                 background-color: white;
                 border-radius: 2.5vh;
@@ -126,6 +130,20 @@
 
                 &:active {
                     transform: translateY(1vh);
+                }
+
+                h4 {
+                    margin: 0;
+                    height: 2vh;
+                    width: 5vh;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+
+                    font-size: 2vh;
+                    transform: rotateZ(90deg) translateX(-25%) translateY(110%);
+                    text-align: center;
+                    user-select: none;
                 }
             }
 

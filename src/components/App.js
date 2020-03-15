@@ -16,6 +16,8 @@ class App extends Component {
       currentWord: undefined,
       currentWordNumber: undefined,
 
+      flashbackIndex: undefined,
+
       lastWords: [],
       isFull: false,
 
@@ -35,6 +37,7 @@ class App extends Component {
 
     this.handleSpacebarPress = this.handleSpacebarPress.bind(this)
     this.handleMethodSwitch = this.handleMethodSwitch.bind(this)
+    this.handleShowWordFlashback = this.handleShowWordFlashback.bind(this)
   }
 
   componentDidMount() {
@@ -100,6 +103,10 @@ class App extends Component {
     const currentWordPickerMethod = this.state.currentWordPickerMethod.slice()
     const newWordPickerMethod = currentWordPickerMethod.reverse()
     this.setState({ currentWordPickerMethod: newWordPickerMethod }, () => console.log(this.state.currentWordPickerMethod))
+  }
+
+  handleShowWordFlashback(wordIndexInLastWords) {
+
   }
 
   render() {
