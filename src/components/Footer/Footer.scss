@@ -24,6 +24,7 @@
             min-width: 5vh;
             height: 10vh;
             margin: 0 1.5vh;
+            z-index: 5;
 
             .shape {
                 height: 10vh;
@@ -79,6 +80,7 @@
         top: 0;
         left: 0;
         transform: translateY(-75vh);
+        z-index: 0;
     }
 }
 

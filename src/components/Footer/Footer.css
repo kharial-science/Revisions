@@ -34,6 +34,7 @@
   min-width: 5vh;
   height: 10vh;
   margin: 0 1.5vh;
+  z-index: 5;
 }
 
 #Footer .last-words-shape-container .last-word-shape .shape {
@@ -97,6 +98,7 @@
   left: 0;
   -webkit-transform: translateY(-75vh);
           transform: translateY(-75vh);
+  z-index: 0;
 }
 
 @-webkit-keyframes firstShapeComes {
