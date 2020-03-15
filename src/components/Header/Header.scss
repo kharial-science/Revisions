@@ -19,13 +19,6 @@
         user-select: none;
     }
 
-    #ourDiscord {
-        // margin: 3.75vh -50% 0 0;
-        top: 3.75vh;
-        left: 50%;
-        height: 60px;
-    }
-
     #ourLogo {
         z-index: 3;
         position: absolute;
@@ -39,16 +32,14 @@
     }
 
     #header-title-container {
-        margin-right: 5vw;
-
         display: flex;
-        flex-direction: row;
+        // flex-direction: row;
         align-items: center;
-        justify-content: center;
+        // justify-content: center;
 
         margin-left: 5vw;
         padding: 0 15px;
-        height: 50px;
+        height: 5vh;
 
         background-color: white;
         border-radius: .6vh;
@@ -59,18 +50,19 @@
 
         display: flex;
         flex-direction: row;
+        align-items: center;
 
         .social-network {
             margin: 0 1vw;
-            width: 60px;
-            height: 60px;
+            width: 5vh;
+            height: 5vh;
 
             border-radius: .6vh;
 
             img {
                 background-color: white;
                 border-radius: .5vh;
-                height: 50px;
+                height: 5vh;
             }
         }
     }

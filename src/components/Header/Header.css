@@ -30,12 +30,6 @@
           user-select: none;
 }
 
-#Header #ourDiscord {
-  top: 3.75vh;
-  left: 50%;
-  height: 60px;
-}
-
 #Header #ourLogo {
   z-index: 3;
   position: absolute;
@@ -51,23 +45,15 @@
 }
 
 #Header #header-title-container {
-  margin-right: 5vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   margin-left: 5vw;
   padding: 0 15px;
-  height: 50px;
+  height: 5vh;
   background-color: white;
   border-radius: .6vh;
 }
@@ -81,19 +67,22 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #Header #social-networks .social-network {
   margin: 0 1vw;
-  width: 60px;
-  height: 60px;
+  width: 5vh;
+  height: 5vh;
   border-radius: .6vh;
 }
 
 #Header #social-networks .social-network img {
   background-color: white;
   border-radius: .5vh;
-  height: 50px;
+  height: 5vh;
 }
 
 #Header #Background {
