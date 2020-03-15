@@ -6,6 +6,96 @@
   background-color: #2E2E2E;
   -webkit-box-shadow: 0 -4px 12px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0 -4px 12px 0px rgba(0, 0, 0, 0.25);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 5vw [method-picker] calc(calc(80vw - 40vh) / 2) 5vw [last-words] 40vh 5vw [table-picker] calc(calc(80vw - 40vh) / 2) 5vw;
+      grid-template-columns: 5vw [method-picker] calc(calc(80vw - 40vh) / 2) 5vw [last-words] 40vh 5vw [table-picker] calc(calc(80vw - 40vh) / 2) 5vw;
+}
+
+#Footer .next-method-picker,
+#Footer .table-picker {
+  height: 10vh;
+  margin-top: 7.5vh;
+  z-index: 2;
+  background-color: white;
+  border-radius: 5vh;
+  -webkit-box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 4px 12px 0px rgba(0, 0, 0, 0.25);
+}
+
+#Footer .next-method-picker {
+  position: relative;
+  grid-column: method-picker / span 1;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+#Footer .next-method-picker h3 {
+  width: 50%;
+  float: left;
+  margin: 0;
+  margin-top: 5vh;
+  font-size: 2vh;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: all .25s;
+  transition: all .25s;
+}
+
+#Footer .next-method-picker h3.selected {
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+
+#Footer .next-method-picker .current-word-number {
+  position: absolute;
+}
+
+#Footer .next-method-picker .method-bubble {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  background-color: #ffcef8;
+  z-index: -1;
+  border-radius: 2.5vh;
+  -webkit-transition: all .25s;
+  transition: all .25s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#Footer .next-method-picker .method-bubble.selected2 {
+  left: 50%;
+  background-color: #f8ed93;
+}
+
+#Footer .next-method-picker .method-bubble h4 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.5vh;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transform: translateY(1.5vh);
+          transform: translateY(1.5vh);
+}
+
+#Footer .table-picker {
+  grid-column: table-picker / span 1;
 }
 
 #Footer .last-words-shape-container {
@@ -13,6 +103,7 @@
   width: 40vh;
   margin: auto;
   margin-top: 7.5vh;
+  grid-column: last-words / span 1;
   -webkit-transition: all .15s;
   transition: all .15s;
   display: -webkit-box;

@@ -12,9 +12,15 @@ class App extends Component {
 
     this.state = {
       rows: undefined,
+
       currentWord: undefined,
+      currentWordNumber: undefined,
+
       lastWords: [],
-      isFull: false
+      isFull: false,
+
+      // the first method of the array is the method used, when we switch, the array is reversed
+      currentWordPickerMethod: ['pickRandomWordFromRows', 'pickNextWordFromRows'],
     }
 
     this.initiateSpreadsheetRequest = this.initiateSpreadsheetRequest.bind(this)
@@ -25,7 +31,10 @@ class App extends Component {
 
     this.updateCurrentWord = this.updateCurrentWord.bind(this)
     this.pickRandomWordFromRows = this.pickRandomWordFromRows.bind(this)
+    this.pickNextWordFromRows = this.pickNextWordFromRows.bind(this)
+
     this.handleSpacebarPress = this.handleSpacebarPress.bind(this)
+    this.handleMethodSwitch = this.handleMethodSwitch.bind(this)
   }
 
   componentDidMount() {
@@ -58,9 +67,8 @@ class App extends Component {
   }
 
   updateCurrentWord() {
-    const newWord = this.pickRandomWordFromRows()
-
-    this.setState({ currentWord: newWord })
+    const newWord = this[this.state.currentWordPickerMethod[0]]()
+    this.setState({ currentWord: newWord, currentWordNumber: parseInt(newWord.number) })
   }
 
   pickRandomWordFromRows() {
@@ -73,15 +81,25 @@ class App extends Component {
     return randomWord
   }
 
+  pickNextWordFromRows() {
+    const nextWord = this.state.rows[this.state.currentWordNumber + 2 < this.state.rows.length ? this.state.currentWordNumber + 1 : 0]
+    return nextWord
+  }
+
   handleSpacebarPress() {
     let lastWords = this.state.lastWords.slice()
     lastWords.unshift(this.state.currentWord)
     if (!this.state.isFull && lastWords.length === 6) this.setState({ isFull: true })
     lastWords = lastWords.slice(0, 5)
-    console.log(lastWords)
     this.setState({ lastWords })
 
     this.updateCurrentWord()
+  }
+
+  handleMethodSwitch() {
+    const currentWordPickerMethod = this.state.currentWordPickerMethod.slice()
+    const newWordPickerMethod = currentWordPickerMethod.reverse()
+    this.setState({ currentWordPickerMethod: newWordPickerMethod }, () => console.log(this.state.currentWordPickerMethod))
   }
 
   render() {
@@ -97,7 +115,13 @@ class App extends Component {
         {lastWord && <Display key={lastWord.word + 'last'} definition={lastWord.definition} word={lastWord.word} state='last' />}
         {currentWord && <Display key={currentWord.word} definition={currentWord.definition} word={'?'} state='current' />}
         
-        <Footer lastWords={this.state.lastWords} isFull={this.state.isFull} />
+        <Footer 
+          lastWords={this.state.lastWords} 
+          isFull={this.state.isFull} 
+          handleMethodSwitch={this.handleMethodSwitch}
+          currentWordPickerMethod={this.state.currentWordPickerMethod}
+          currentWordNumber={this.state.currentWordNumber}
+        />
         
         <Background />
       </div>

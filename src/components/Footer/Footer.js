@@ -3,7 +3,7 @@ import './Footer.css'
 
 import Background from './../Background/Background'
 
-const Footer = ({ lastWords, isFull }) => {
+const Footer = ({ lastWords, isFull, handleMethodSwitch, currentWordPickerMethod, currentWordNumber }) => {
     const lastWordsInShapes = []
 
     if (lastWords) {
@@ -25,8 +25,20 @@ const Footer = ({ lastWords, isFull }) => {
     
     return (
         <div id='Footer'>
+            <div className="next-method-picker" onClick={handleMethodSwitch}>
+                <h3 className={`random-method ${currentWordPickerMethod[0] === 'pickRandomWordFromRows' ? 'selected' : ''}`}>Random</h3>
+                <h3 className={`inorder-method ${currentWordPickerMethod[0] === 'pickRandomWordFromRows' ? '' : 'selected'}`}>In order</h3>
+                <div className={`method-bubble ${currentWordPickerMethod[0] === 'pickRandomWordFromRows' ? 'selected1' : 'selected2'}`}>
+                    <h4>{currentWordNumber}</h4>
+                </div>
+            </div>
+
             <div className="last-words-shape-container" style={{ }}>
                 {lastWordsInShapes}
+            </div>
+            
+            <div className="table-picker">
+
             </div>
 
             <Background style={{ filter: 'hue-rotate(-90deg)' }} />
