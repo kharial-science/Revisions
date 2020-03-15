@@ -23,6 +23,7 @@ class App extends Component {
 
     this.enableKeyListener = this.enableKeyListener.bind(this)
 
+    this.updateCurrentWord = this.updateCurrentWord.bind(this)
     this.pickRandomWordFromRows = this.pickRandomWordFromRows.bind(this)
     this.handleSpacebarPress = this.handleSpacebarPress.bind(this)
   }
@@ -34,7 +35,7 @@ class App extends Component {
 
   initiateSpreadsheetRequest() {
     const GoogleSpreadsheets = require('google-spreadsheets')
-    const options = { key: '13116MH8PX-pqPIc_aAh5Uj9RczH8ns0B1uwkRTV21uM' }
+    const options = { key: '19doP_Wwzrl7hQIJNWCSFXwn_NOrOjt7wX665tr9AAmc' }
     GoogleSpreadsheets(options, this.spreadsheetCallback)
   }
 
@@ -45,7 +46,7 @@ class App extends Component {
 
   useWorksheetRows(err, rowsArray) {
     if (err) throw err
-    this.setState({ rows: rowsArray }, this.pickRandomWordFromRows)
+    this.setState({ rows: rowsArray }, this.updateCurrentWord)
   }
 
   enableKeyListener() {
@@ -56,9 +57,20 @@ class App extends Component {
     }
   }
 
+  updateCurrentWord() {
+    const newWord = this.pickRandomWordFromRows()
+
+    this.setState({ currentWord: newWord })
+  }
+
   pickRandomWordFromRows() {
-    const randomWord = this.state.rows[Math.floor(Math.random() * this.state.rows.length)]
-    this.setState({ currentWord: randomWord })
+    let randomWord = this.state.rows[Math.floor(Math.random() * this.state.rows.length)]
+
+    while (this.state.lastWords.filter(word => word.word === randomWord.word).length) {
+      randomWord = this.pickRandomWordFromRows()
+    }
+
+    return randomWord
   }
 
   handleSpacebarPress() {
@@ -66,9 +78,10 @@ class App extends Component {
     lastWords.unshift(this.state.currentWord)
     if (!this.state.isFull && lastWords.length === 6) this.setState({ isFull: true })
     lastWords = lastWords.slice(0, 5)
+    console.log(lastWords)
     this.setState({ lastWords })
 
-    this.pickRandomWordFromRows()
+    this.updateCurrentWord()
   }
 
   render() {

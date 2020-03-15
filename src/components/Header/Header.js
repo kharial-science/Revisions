@@ -16,6 +16,7 @@ const Header = ({}) => {
                 <a href='https://github.com/kharohfamily-science' className='social-network' target='_blank'><img src='https://img.icons8.com/dotty/80/000000/github.png' alt='github' /></a>
                 <a href='https://twitter.com/KFamilyScience' className='social-network' target='_blank'><img src='https://img.icons8.com/dotty/80/000000/twitter.png' alt='twitter' /></a>
             </div>
+
             <Background style={{ filter: 'hue-rotate(-90deg)' }} />
         </div>
     )
