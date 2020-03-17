@@ -16,6 +16,8 @@ class App extends Component {
       currentWord: undefined,
       currentWordNumber: undefined,
 
+      currentTable: undefined,
+
       flashbackIndex: undefined,
 
       lastWords: [],
@@ -37,7 +39,11 @@ class App extends Component {
 
     this.handleSpacebarPress = this.handleSpacebarPress.bind(this)
     this.handleMethodSwitch = this.handleMethodSwitch.bind(this)
+    this.handleTableChange = this.handleTableChange.bind(this)
+
     this.handleShowWordFlashback = this.handleShowWordFlashback.bind(this)
+    this.handleFashbackClick = this.handleFashbackClick.bind(this)
+    this.handleFlashbackCancel = this.handleFlashbackCancel.bind(this)
   }
 
   componentDidMount() {
@@ -102,11 +108,34 @@ class App extends Component {
   handleMethodSwitch() {
     const currentWordPickerMethod = this.state.currentWordPickerMethod.slice()
     const newWordPickerMethod = currentWordPickerMethod.reverse()
-    this.setState({ currentWordPickerMethod: newWordPickerMethod }, () => console.log(this.state.currentWordPickerMethod))
+    this.setState({ currentWordPickerMethod: newWordPickerMethod })
+  }
+
+  handleTableChange(e) {
+    const newValue = e.target.value
+    console.log(newValue)
+    if (["allemand", "anglais"].includes(newValue)) this.setState({ currentTable: newValue })
   }
 
   handleShowWordFlashback(wordIndexInLastWords) {
+    this.setState({ flashbackIndex: wordIndexInLastWords })
+  }
 
+  handleFashbackClick(wordIndexInLastWords) {
+
+    const newCurrentWord = this.state.lastWords[wordIndexInLastWords]
+    const newLastWords = this.state.lastWords.slice(wordIndexInLastWords + 1)
+
+    this.setState({ 
+      flashbackIndex: undefined,
+      isFull: false,
+      currentWord: newCurrentWord,
+      lastWords: newLastWords,
+    })
+  }
+
+  handleFlashbackCancel() {
+    this.setState({ flashbackIndex: undefined })
   }
 
   render() {
@@ -114,13 +143,24 @@ class App extends Component {
     const lastWord = this.state.lastWords[0]
     const currentWord = this.state.currentWord
 
+    const flashbackLastWord = typeof this.state.flashbackIndex === 'number' ? this.state.lastWords[this.state.flashbackIndex + 1] : undefined
+    const flashbackWord = typeof this.state.flashbackIndex === 'number' ? this.state.lastWords[this.state.flashbackIndex] : undefined
+
     return (
       <div id="App">
         <Header />
 
-        {lastDisappeared && <Display key={lastDisappeared.word + 'disap'} definition={lastDisappeared.definition} word={lastDisappeared.word} state='last-disappeared' />}
-        {lastWord && <Display key={lastWord.word + 'last'} definition={lastWord.definition} word={lastWord.word} state='last' />}
-        {currentWord && <Display key={currentWord.word} definition={currentWord.definition} word={'?'} state='current' />}
+        {
+          lastDisappeared && <Display key={lastDisappeared.word + 'disap'} definition={lastDisappeared.definition} word={lastDisappeared.word} state='last-disappeared' />
+        }
+        {
+          flashbackLastWord && <Display key={flashbackLastWord.word + 'last'} definition={flashbackLastWord.definition} word={flashbackLastWord.word} state='last' /> ||
+          (!flashbackWord && lastWord) && <Display key={lastWord.word + 'last'} definition={lastWord.definition} word={lastWord.word} state='last' />
+        }
+        {
+          flashbackWord && <Display key={flashbackWord.word} definition={flashbackWord.definition} word={'?'} state='current' /> ||
+          currentWord && <Display key={currentWord.word} definition={currentWord.definition} word={'?'} state='current' />
+        }
         
         <Footer 
           lastWords={this.state.lastWords} 
@@ -128,6 +168,10 @@ class App extends Component {
           handleMethodSwitch={this.handleMethodSwitch}
           currentWordPickerMethod={this.state.currentWordPickerMethod}
           currentWordNumber={this.state.currentWordNumber}
+          handleTableChange={this.handleTableChange}
+          handleShowWordFlashback={this.handleShowWordFlashback}
+          handleFashbackClick={this.handleFashbackClick}
+          handleFlashbackCancel={this.handleFlashbackCancel}
         />
         
         <Background />

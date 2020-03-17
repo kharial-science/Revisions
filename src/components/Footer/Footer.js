@@ -3,7 +3,12 @@ import './Footer.css'
 
 import Background from './../Background/Background'
 
-const Footer = ({ lastWords, isFull, handleMethodSwitch, currentWordPickerMethod, currentWordNumber }) => {
+const Footer = ({ 
+    lastWords, isFull, 
+    handleMethodSwitch, currentWordPickerMethod, currentWordNumber,
+    handleTableChange,
+    handleShowWordFlashback, handleFashbackClick, handleFlashbackCancel
+}) => {
     const lastWordsInShapes = []
 
     if (lastWords) {
@@ -12,7 +17,13 @@ const Footer = ({ lastWords, isFull, handleMethodSwitch, currentWordPickerMethod
             const state = index === 0 ? 'first' : index === lastWords.length - 1 ? 'last' : 'middle'
 
             lastWordsInShapes.push(
-                <div key={word.word + state + index} className={`last-word-shape ${state}`}>
+                <div 
+                    key={word.word + state + index} 
+                    className={`last-word-shape ${state}`}
+                    onMouseEnter={() => handleShowWordFlashback(index)}
+                    onMouseLeave={() => handleFlashbackCancel(index)}
+                    onClick={() => handleFashbackClick(index)}
+                >
                     <div className="shape">
                         <h4>{word.number}</h4>
                     </div>
@@ -40,7 +51,7 @@ const Footer = ({ lastWords, isFull, handleMethodSwitch, currentWordPickerMethod
             </div>
             
             <div className="table-picker">
-
+                <input className="table-input" onChange={handleTableChange} placeholder="new table"></input>
             </div>
 
             <Background style={{ filter: 'hue-rotate(-90deg)' }} />

@@ -96,6 +96,17 @@
 
 #Footer .table-picker {
   grid-column: table-picker / span 1;
+  overflow: hidden;
+}
+
+#Footer .table-picker .table-input {
+  margin-left: 20%;
+  width: 80%;
+  height: 100%;
+  border: none;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 4vh;
 }
 
 #Footer .last-words-shape-container {
